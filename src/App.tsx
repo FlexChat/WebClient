@@ -1,9 +1,12 @@
-import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => (
-  <div>
-    123
-  </div>
+  <Routes>
+    <Route path="/">
+      <Route path="/" element={<div>123</div>} />
+      <Route path="*" element={<div>Error 404</div>} />
+    </Route>
+  </Routes>
 );
 
 export default App;
