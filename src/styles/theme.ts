@@ -5,7 +5,7 @@ interface ITheme {
 }
 const theme = {
   colors: {
-    primary: "grey",
+    primary: "lightgrey",
   },
 };
 
