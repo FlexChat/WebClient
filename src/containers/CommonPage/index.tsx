@@ -1,5 +1,6 @@
 import React from "react";
-import { Wrapper, Main } from "./style";
+import Header from "components/Header";
+import { Wrapper, Main, Footer } from "./style";
 
 type Props = {
   children?: React.ReactNode;
@@ -7,10 +8,13 @@ type Props = {
 
 const CommonPage: React.FC<Props> = ({ children }) => (
   <Wrapper>
-    header
+    <Header />
     <Main>
       {children}
     </Main>
+    <Footer>
+      <div>123</div>
+    </Footer>
   </Wrapper>
 );
 
