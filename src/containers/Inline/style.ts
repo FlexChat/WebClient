@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+interface ColumnProp {
+  column?: boolean;
+}
+
+export const Wrapper = styled.div<ColumnProp>`
   display: flex;
   align-items: center;
+  ${(props) => props.column && `
+    flex-direction: column;
+    justify-content: center;
+  `}
 `;
 
 interface GapProps {
   gap: number;
   flex?: string;
+  column?: boolean;
 }
 
 export const ContainerWrap = styled.div<GapProps>`
@@ -17,6 +26,12 @@ export const ContainerWrap = styled.div<GapProps>`
     width: 100%;
   }
   margin-right: ${({ gap }) => gap}px;
+
+  ${(props) => props.column && `
+    margin-right: 0;
+    margin-bottom: ${props.gap}px;
+    width: 100%;
+  `};
 
   &:last-child {
     margin-right: 0px;

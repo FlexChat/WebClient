@@ -19,21 +19,28 @@ export const SubTitle = styled.p`
   margin: 0;
   font-size: 16px;
   line-height: 38px;
+  text-align: center;
 `;
 
-export const Form = styled.form`
+interface RefProp {
+  // TODO: remove
+  ref: any;
+}
+
+export const Form = styled.form<RefProp>`
   margin-top: 20px;
   padding: 30px;
   background: ${({ theme }) => theme.colors.background.primary_dark_light};
   border-radius: 15px;
   width: 550px;
+  max-width: calc(100vw - 40px);
 `;
 
 export const OrLine = styled.div`
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  margin-top: 25px;
+  margin: 25px 0;
 
   &::after {
     content: "";
