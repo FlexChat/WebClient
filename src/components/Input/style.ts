@@ -16,6 +16,18 @@ export const Icon = styled.img`
   transform: translateY(-50%);
 `;
 
+export const ErrorText = styled.span`
+  color: #C84C30;
+  margin-top: 10px;
+  margin-bottom: -5px;
+  font-size: 14px;
+  display: block;
+`;
+
+export const Wrapper = styled.span`
+
+`;
+
 interface InputProps {
   isIcon: boolean;
 }

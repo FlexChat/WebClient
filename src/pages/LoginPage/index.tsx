@@ -3,6 +3,7 @@ import CommonPage from "containers/CommonPage";
 import Inline from "containers/Inline";
 import Button from "containers/Button";
 import Input from "components/Input";
+import useForm from "hooks/useForm";
 
 import Google from "assets/images/google.svg";
 import Apple from "assets/images/apple.svg";
@@ -15,16 +16,22 @@ import {
 } from "./style";
 
 const LoginPage: React.FC = () => {
-  const formRef = useRef();
+  const formRef = useRef<HTMLElement>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const {
+    handleSubmit,
+  } = useForm(formRef);
+
   return (
     <CommonPage>
       <Wrapper>
         <Title>Getting started</Title>
         <SubTitle>Create an account to continue and connect with the people</SubTitle>
-        <Form ref={formRef}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <Inline gap={20}>
             <Inline.Container>
-              <Button>
+              <Button type="button">
                 <Inline gap={0}>
                   <Inline.Container flex="none">
                     <img src={Google} alt="google" width="20" height="20" />
@@ -36,7 +43,7 @@ const LoginPage: React.FC = () => {
               </Button>
             </Inline.Container>
             <Inline.Container>
-              <Button>
+              <Button type="button">
                 <Inline gap={0}>
                   <Inline.Container flex="none">
                     <img src={Apple} alt="apple" width="20" height="20" />
@@ -48,14 +55,24 @@ const LoginPage: React.FC = () => {
               </Button>
             </Inline.Container>
           </Inline>
-
           <OrLine>Or</OrLine>
           <Inline gap={20} column>
             <Inline.Container>
-              <Input placeholder="Your Email" type="email" iconPath={Email} />
+              <Input
+                placeholder="Your Email"
+                type="email"
+                iconPath={Email}
+                ref={inputRef}
+                onInvalidFormMessage="Invalid email"
+              />
             </Inline.Container>
             <Inline.Container>
-              <Input placeholder="Your Name" iconPath={Person} maxLength={15} />
+              <Input
+                placeholder="Your Login"
+                iconPath={Person}
+                maxLength={15}
+                minLength={4}
+              />
             </Inline.Container>
             <Inline.Container>
               <Input placeholder="Your Password" type="password" iconPath={Key} />
