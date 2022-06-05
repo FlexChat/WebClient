@@ -24,8 +24,7 @@ export const ErrorText = styled.span`
   display: block;
 `;
 
-export const Wrapper = styled.span`
-
+export const Wrapper = styled.div`
 `;
 
 export const Right = styled.div`
@@ -78,6 +77,11 @@ export const InputMain = styled.input<InputProps>`
   ${(props) => props.isIcon && `
     padding-left: 45px;
   `}
+
+  /* &:invalid:not(:focus) {
+    border: 1px solid #C84C30;
+  } */
+
 
   &:focus {
     transition: border .15s;

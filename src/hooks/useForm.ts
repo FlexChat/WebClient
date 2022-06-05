@@ -14,8 +14,6 @@ const useForm = (formRef: React.MutableRefObject<HTMLElement | undefined>, passw
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    console.log("submit");
-    console.log(event);
     const { firstPasswordRef, secondPasswordRef } = passwordRefs;
     if (!firstPasswordRef.current || !secondPasswordRef.current) return;
     const isPasswordEqual = firstPasswordRef.current.value === secondPasswordRef.current.value;

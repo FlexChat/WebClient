@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 import CommonPage from "containers/CommonPage";
 import Inline from "containers/Inline";
 import Button from "containers/Button";
@@ -13,7 +14,7 @@ import Person from "assets/images/person.svg";
 import Key from "assets/images/key.svg";
 
 import {
-  Wrapper, Title, SubTitle, Form, OrLine,
+  Wrapper, Title, SubTitle, Form, OrLine, FormBottom,
 } from "./style";
 
 const LoginPage: React.FC = () => {
@@ -111,6 +112,10 @@ const LoginPage: React.FC = () => {
             </Inline.Container>
           </Inline>
           <Button maxWidth primary onClick={handleButtonClick}>Sign up</Button>
+          <FormBottom>
+            Already have an account?
+            <NavLink to="/">Sign in</NavLink>
+          </FormBottom>
         </Form>
       </Wrapper>
     </CommonPage>

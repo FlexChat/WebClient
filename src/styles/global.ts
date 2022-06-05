@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
@@ -9,5 +10,10 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Roboto Flex', sans-serif;
+  }
+
+  a {
+    text-decoration: inherit;
+    color: inherit;
   }
 `;

@@ -33,26 +33,34 @@ const Input = React.forwardRef<HTMLInputElement | null, Props>(({
   const getDefaultValidate = useInputRules(inputRef);
   const cbRef = useCombinedRef(ref as React.MutableRefObject<HTMLElement | null>, inputRef);
 
-  useEffect(() => {
-    if (!inputRef.current) return;
-    inputRef.current.addEventListener("invalid", (event) => {
-      const { detail } = event as Event & { detail?: { error?: string } };
-      if (detail && detail.error) {
-        setInvalidMessage(detail.error);
-        return;
-      }
-      setInvalidMessage(getDefaultValidate());
-      event.preventDefault();
-    });
-    inputRef.current.addEventListener("input", (event) => {
-      setInvalidMessage(null);
-      event.preventDefault();
-    });
-  }, []);
+  const onInvalid: React.FormEventHandler<HTMLInputElement> = ({ nativeEvent }) => {
+    console.log("oninvalid");
+    const { detail } = nativeEvent as typeof nativeEvent & { detail?: { error?: string } };
+    if (detail && detail.error) {
+      setInvalidMessage(detail.error);
+      return;
+    }
+    setInvalidMessage(getDefaultValidate());
+    nativeEvent.preventDefault();
+  };
+
+  const onInput: React.FormEventHandler<HTMLInputElement> = (event) => {
+    setInvalidMessage(null);
+    event.preventDefault();
+  };
 
   useEffect(() => {
     setInputType(type);
   }, [type]);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+    if (invalidMessage) {
+      inputRef.current.style.border = "1px solid #C84C30";
+    } else {
+      inputRef.current.style.border = "";
+    }
+  }, [invalidMessage]);
 
   return (
     <Wrapper>
@@ -69,6 +77,8 @@ const Input = React.forwardRef<HTMLInputElement | null, Props>(({
           maxLength={maxLength}
           minLength={minLength}
           ref={cbRef}
+          onInput={onInput}
+          onInvalid={onInvalid}
           required={required}
         />
         <Right>

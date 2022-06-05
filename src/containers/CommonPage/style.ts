@@ -10,6 +10,25 @@ export const Wrapper = styled.div`
 
 export const Footer = styled.footer`
   background: ${({ theme }) => theme.colors.background.primary_dark_light};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+`;
+
+export const FooterText = styled.span`
+  color: ${({ theme }) => theme.colors.text.primary_light};
+  font-size: 11px;
+  letter-spacing: 2px;
+
+  a {
+    transition: .15s color;
+  }
+
+  a:hover {
+    transition: .15s color;
+    color: ${({ theme }) => theme.colors.background.secondary_colorful}
+  }
 `;
 
 export const Main = styled.main`

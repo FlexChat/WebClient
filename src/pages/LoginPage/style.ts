@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   color: ${({ theme }) => theme.colors.text.primary_light};
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 `;
 
 export const Title = styled.h1`
@@ -34,6 +34,24 @@ export const Form = styled.form<RefProp>`
   border-radius: 15px;
   width: 550px;
   max-width: calc(100vw - 40px);
+`;
+
+export const FormBottom = styled.p`
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 0px;
+
+  & a {
+    margin-left: 10px;
+    color: ${({ theme }) => theme.colors.background.secondary_colorful};
+  }
+
+  & a:focus {
+    outline: 1px solid ${({ theme }) => theme.colors.background.secondary_colorful};
+  }
 `;
 
 export const OrLine = styled.div`
