@@ -9,7 +9,7 @@ const useForm = (formRef: React.MutableRefObject<HTMLElement | undefined>) => {
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    formRef.current?.blur();
+    console.log("submit");
   };
 
   // eslint-disable-next-line no-unused-vars

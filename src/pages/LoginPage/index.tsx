@@ -64,6 +64,7 @@ const LoginPage: React.FC = () => {
                 type="email"
                 iconPath={Email}
                 ref={inputRef}
+                required
               />
             </Inline.Container>
             <Inline.Container>
@@ -72,6 +73,7 @@ const LoginPage: React.FC = () => {
                 iconPath={Person}
                 maxLength={15}
                 minLength={4}
+                required
               />
             </Inline.Container>
             <Inline.Container>
@@ -80,6 +82,8 @@ const LoginPage: React.FC = () => {
                 type="password"
                 iconPath={Key}
                 minLength={4}
+                maxLength={30}
+                required
               />
             </Inline.Container>
           </Inline>

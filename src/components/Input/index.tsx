@@ -13,10 +13,11 @@ interface Props {
   iconPath?: string;
   maxLength?: number;
   minLength?: number;
+  required?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement | null, Props>(({
-  placeholder, type, iconPath, maxLength, minLength,
+  placeholder, type, iconPath, maxLength, minLength, required,
 }, ref) => {
   const id = useId();
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -37,10 +38,6 @@ const Input = React.forwardRef<HTMLInputElement | null, Props>(({
     });
   }, []);
 
-  useEffect(() => {
-
-  }, []);
-
   return (
     <Wrapper>
       <InputWrapper>
@@ -56,7 +53,7 @@ const Input = React.forwardRef<HTMLInputElement | null, Props>(({
           maxLength={maxLength}
           minLength={minLength}
           ref={cbRef}
-          required
+          required={required}
         />
       </InputWrapper>
       {invalidMessage && <ErrorText>{invalidMessage}</ErrorText>}
