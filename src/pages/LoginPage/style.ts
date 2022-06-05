@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   flex: 1;
   display: flex;
-  padding-top: 30px;
   flex-direction: column;
   align-items: center;
   color: ${({ theme }) => theme.colors.text.primary_light};
+  margin-bottom: 100px;
 `;
 
 export const Title = styled.h1`

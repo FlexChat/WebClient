@@ -28,6 +28,36 @@ export const Wrapper = styled.span`
 
 `;
 
+export const Right = styled.div`
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export const Button = styled.button`
+  background: inherit;
+  border: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: .2s filter;
+  
+  &:hover {
+    transition: .2s filter;
+    filter: contrast(50%);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  & img {
+    display: block;
+  }
+`;
+
 interface InputProps {
   isIcon: boolean;
 }

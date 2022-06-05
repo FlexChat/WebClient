@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import CommonPage from "containers/CommonPage";
 import Inline from "containers/Inline";
 import Button from "containers/Button";
 import Input from "components/Input";
+import EyeVisible from "components/Input/EyeVIsible";
 import useForm from "hooks/useForm";
 
 import Google from "assets/images/google.svg";
@@ -18,11 +19,17 @@ import {
 const LoginPage: React.FC = () => {
   const formRef = useRef<HTMLElement>();
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [passwordType, setPasswordType] = useState<"text" | "password" | "email">("password");
+  const firstPasswordRef = useRef<HTMLInputElement | null>(null);
+  const secondPasswordRef = useRef<HTMLInputElement | null>(null);
 
   const {
     handleSubmit,
     handleButtonClick,
-  } = useForm(formRef);
+  } = useForm(formRef, {
+    firstPasswordRef,
+    secondPasswordRef,
+  });
 
   return (
     <CommonPage>
@@ -79,10 +86,26 @@ const LoginPage: React.FC = () => {
             <Inline.Container>
               <Input
                 placeholder="Your Password"
-                type="password"
+                type={passwordType}
                 iconPath={Key}
                 minLength={4}
                 maxLength={30}
+                RightComponent={EyeVisible}
+                setPasswordType={setPasswordType}
+                ref={firstPasswordRef}
+                required
+              />
+            </Inline.Container>
+            <Inline.Container>
+              <Input
+                placeholder="Repeat Your Password"
+                type={passwordType}
+                iconPath={Key}
+                minLength={4}
+                maxLength={30}
+                RightComponent={EyeVisible}
+                setPasswordType={setPasswordType}
+                ref={secondPasswordRef}
                 required
               />
             </Inline.Container>
