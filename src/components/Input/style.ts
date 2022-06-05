@@ -39,6 +39,7 @@ export const InputMain = styled.input<InputProps>`
   border-radius: 10px;
   padding: 15px 20px;
   outline: none;
+  color-scheme: dark;
   color: ${({ theme }) => theme.colors.text.primary_light};
   font-size: 14px;
   line-height: 18px;

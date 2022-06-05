@@ -8,8 +8,16 @@ const useForm = (formRef: React.MutableRefObject<HTMLElement | undefined>) => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
-    console.log("submit");
     event.preventDefault();
+    formRef.current?.blur();
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  type ButtonClick<T> = (e: React.MouseEvent<T, MouseEvent>) => void
+
+  const handleButtonClick: ButtonClick<HTMLButtonElement> = (event) => {
+    const target = event.target as HTMLButtonElement;
+    target.blur();
   };
 
   useEffect(() => {
@@ -23,6 +31,7 @@ const useForm = (formRef: React.MutableRefObject<HTMLElement | undefined>) => {
   return {
     isValid,
     handleSubmit,
+    handleButtonClick,
   };
 };
 

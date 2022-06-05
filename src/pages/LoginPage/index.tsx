@@ -21,6 +21,7 @@ const LoginPage: React.FC = () => {
 
   const {
     handleSubmit,
+    handleButtonClick,
   } = useForm(formRef);
 
   return (
@@ -63,7 +64,6 @@ const LoginPage: React.FC = () => {
                 type="email"
                 iconPath={Email}
                 ref={inputRef}
-                onInvalidFormMessage="Invalid email"
               />
             </Inline.Container>
             <Inline.Container>
@@ -75,10 +75,15 @@ const LoginPage: React.FC = () => {
               />
             </Inline.Container>
             <Inline.Container>
-              <Input placeholder="Your Password" type="password" iconPath={Key} />
+              <Input
+                placeholder="Your Password"
+                type="password"
+                iconPath={Key}
+                minLength={4}
+              />
             </Inline.Container>
           </Inline>
-          <Button maxWidth primary>Sign up</Button>
+          <Button maxWidth primary onClick={handleButtonClick}>Sign up</Button>
         </Form>
       </Wrapper>
     </CommonPage>

@@ -1,4 +1,5 @@
 import useCombinedRef from "hooks/useCombinedRef";
+import useInputRules from "hooks/useInputRules";
 import React, {
   useId, useEffect, useRef, useState,
 } from "react";
@@ -12,27 +13,32 @@ interface Props {
   iconPath?: string;
   maxLength?: number;
   minLength?: number;
-  onInvalidFormMessage?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement | null, Props>(({
-  placeholder, type, iconPath, maxLength, minLength, onInvalidFormMessage,
+  placeholder, type, iconPath, maxLength, minLength,
 }, ref) => {
   const id = useId();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [isValid, setIsValid] = useState(true);
+  const [invalidMessage, setInvalidMessage] = useState<null | string>(null);
+  const getDefaultValidate = useInputRules(inputRef);
   const cbRef = useCombinedRef(ref as React.MutableRefObject<HTMLElement | null>, inputRef);
 
   useEffect(() => {
     if (!inputRef.current) return;
     inputRef.current.addEventListener("invalid", (event) => {
-      setIsValid(false);
+      console.log("invalid");
+      setInvalidMessage(getDefaultValidate());
       event.preventDefault();
     });
     inputRef.current.addEventListener("input", (event) => {
-      setIsValid(true);
+      setInvalidMessage(null);
       event.preventDefault();
     });
+  }, []);
+
+  useEffect(() => {
+
   }, []);
 
   return (
@@ -50,9 +56,10 @@ const Input = React.forwardRef<HTMLInputElement | null, Props>(({
           maxLength={maxLength}
           minLength={minLength}
           ref={cbRef}
+          required
         />
       </InputWrapper>
-      {!isValid && <ErrorText>{onInvalidFormMessage}</ErrorText>}
+      {invalidMessage && <ErrorText>{invalidMessage}</ErrorText>}
     </Wrapper>
   );
 });
